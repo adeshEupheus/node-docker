@@ -13,20 +13,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const mongodb_1 = require("mongodb");
-const uri = "mongodb://adesh:mypass@mongodb:27017/?authSource=admin";
-const client = new mongodb_1.MongoClient(uri);
+const mongoose_1 = __importDefault(require("mongoose"));
+const Books_1 = __importDefault(require("./models/Books"));
+const uri = "mongodb://adesh:mypass@mongodb:27017/db?authSource=admin";
 const app = (0, express_1.default)();
 const PORT = process.env.PORT || 3000;
 app.get("/", (req, res) => {
     res.send("hi there!");
 });
 const main = () => __awaiter(void 0, void 0, void 0, function* () {
-    yield client.connect();
+    yield mongoose_1.default.connect(uri);
     console.log("Connected successfully to db");
-    const db = client.db("db");
-    const books = db.collection("books");
-    const data = yield books.find({}).toArray();
+    const data = yield Books_1.default.find();
     console.log(data);
     app.listen(PORT, () => {
         console.log(`listing on port ${PORT}`);

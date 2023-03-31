@@ -1,8 +1,8 @@
 import express from "express";
-import { MongoClient } from "mongodb";
+import mongoose from "mongoose";
+import Books from "./models/Books";
 
-const uri = "mongodb://adesh:mypass@mongodb:27017/?authSource=admin";
-const client = new MongoClient(uri);
+const uri = "mongodb://adesh:mypass@mongodb:27017/db?authSource=admin";
 
 const app = express();
 
@@ -13,12 +13,10 @@ app.get("/", (req, res) => {
 });
 
 const main = async () => {
-  await client.connect();
+  await mongoose.connect(uri);
   console.log("Connected successfully to db");
-  const db = client.db("db");
-  const books = db.collection("books");
+  const data = await Books.find();
 
-  const data = await books.find({}).toArray();
   console.log(data);
 
   app.listen(PORT, () => {
