@@ -7,6 +7,7 @@ services:
 
   node-app:
     build: .
+    image: adeshshrma/node-app
     depends_on:
       - mongodb
       - redis_db
