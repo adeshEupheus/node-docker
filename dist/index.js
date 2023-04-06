@@ -46,7 +46,7 @@ app.use((0, express_session_1.default)({
 }));
 const PORT = process.env.PORT || 3000;
 app.get("/api", (req, res) => {
-    res.send("hi there!");
+    res.send("hi there!!!!!!!!!!!!!");
     console.log("yeah it ran");
 });
 app.use("/api_v1/books", Auth_2.default, Book_1.default);
