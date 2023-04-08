@@ -40,7 +40,7 @@ app.use(
 const PORT = process.env.PORT || 3000;
 
 app.get("/api", (req, res) => {
-  res.send("hi there!!!!!!!!!!!!!");
+  res.send("hi there updated image 2");
   console.log("yeah it ran");
 });
 
